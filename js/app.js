@@ -35,7 +35,7 @@ async function start() {
     window.app.wu = new web3.eth.Contract(WhiteUDID_abi,WhiteUDID_Addr)
    
     // 发送udid
-    // await injectContractBaseInfo()
+    await injectContractBaseInfo()
 
     // if (window.app.current_account == window.app.owner) {
     //     $("#contract_owner").show()
@@ -231,13 +231,14 @@ function attachEvents() {
     $("#exchange").click(async () => {
         try {
             let addr = window.app.current_account
+            //await window.app.wu.methods.DelWhiteList().send({from: window.app.current_account})
             // let p1 = window.app.wu.methods.IsInWhiteList().call({from: window.app.current_account})
             // let values = await Promise.all([p1])
             let IsWhite = await window.app.wu.methods.IsInWhiteList().call({from: window.app.current_account})
             if (IsWhite){
                 showMsg("已经在白名单了", "It's already on the white list")
             }else{
-                await window.app.wu.methods.AddWhiteList().call({from: window.app.current_account})
+                await window.app.wu.methods.AddWhiteList().send({from: window.app.current_account})
                 showMsg("添加白名单成功", "Description Adding a whitelist succeeded")
             }
         } catch (error) {
