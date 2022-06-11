@@ -56,8 +56,6 @@ export function formatDate(now) {
 
 export async function detectBroswer(){
     // Modern dApp browsers...
-    // 大多数以太坊支持的浏览器（如 MetaMask）都有一个符合EIP-1193的提供程序,window.ethereum
-    // 调用 metamask
     if (window.ethereum) {
         $("#broswer_type").html("modern")
         window.web3 = new Web3(ethereum)
