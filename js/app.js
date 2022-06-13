@@ -230,11 +230,12 @@ function attachEvents() {
             // await window.app.wu.methods.DelWhiteList().send({from: window.app.current_account})
             // let p1 = window.app.wu.methods.IsInWhiteList().call({from: window.app.current_account})
             // let values = await Promise.all([p1])
-            let addr = $("#input_addr").val()
-            console.log(addr)
-            if (addr){
-                window.app.current_account=addr
-            }
+            // let addr = $("#input_addr").val()
+            // if (addr){
+            //     window.app.current_account=addr
+            // }
+            // console.log(window.app.current_account)
+            // console.log(window.app.current_account)
             let IsWhite = await window.app.wu.methods.IsInWhiteList().call({from: window.app.current_account})
             if (IsWhite){
                 showMsg(window.app.current_account+":已经在白名单了", window.app.current_account+":It's already on the white list")
@@ -243,7 +244,7 @@ function attachEvents() {
                 showMsg(window.app.current_account+":添加白名单成功", window.app.current_account+":Description Adding a whitelist succeeded")
             }
         } catch (error) {
-            showMsg("错误", "failed")
+            showMsg("错误:"+window.app.current_account+","+error.message, "failed:" +window.app.current_account+","+error.message)
         }
         
 
